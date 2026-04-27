@@ -1,0 +1,14 @@
+[Unit]
+Description=Predator Helios Neo 16 AI — mode button daemon
+After=systemd-udev-settle.service
+
+[Service]
+Type=simple
+# BIOS always boots in balanced mode — ensure consistent state
+ExecStartPre=/bin/bash -c 'echo balanced > /var/tmp/predator_mode'
+ExecStart=/usr/bin/python3 /usr/local/lib/predator/predator-button.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

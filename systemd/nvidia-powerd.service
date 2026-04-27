@@ -1,0 +1,9 @@
+[Unit]
+Description=nvidia-powerd service (Dynamic Boost 2.0)
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nvidia-powerd
+
+[Install]
+WantedBy=multi-user.target
