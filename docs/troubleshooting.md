@@ -22,6 +22,31 @@ After a kernel update, DKMS must rebuild the module:
 sudo dkms autoinstall
 ```
 
+If `modprobe` still fails with **"Operation not permitted"** and Secure Boot is enabled, the MOK (Machine Owner Key) may have been cleared — this happens after a BIOS reset or when Secure Boot is re-enabled from scratch. The key files remain on disk; you just need to re-enroll them:
+
+```bash
+# Check if Secure Boot is enabled
+mokutil --sb-state
+
+# Re-enroll the existing key
+sudo mokutil --import /var/lib/shim-signed/mok/MOK.der
+# Enter a temporary password when prompted (e.g. 1234)
+```
+
+Then **reboot**. A blue "MOK Management" screen will appear:
+1. Select **Enroll MOK**
+2. Select **Continue**
+3. Select **Yes**
+4. Enter the temporary password you set
+5. Select **Reboot**
+
+After rebooting, verify:
+
+```bash
+lsmod | grep acpi_call      # module must appear
+sudo predator-mode status   # should work normally
+```
+
 ---
 
 ## GPU still capped at 80W after install

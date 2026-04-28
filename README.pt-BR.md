@@ -50,6 +50,8 @@ cd predator-helios-neo-16-linux
 sudo bash install.sh
 ```
 
+> **Secure Boot:** Se o Secure Boot estiver ativado, o módulo `acpi_call` precisa ter sua chave de assinatura registrada no banco MOK do firmware. O pacote `acpi-call-dkms` do Ubuntu assina o módulo automaticamente, mas o registro da chave exige uma confirmação única na tela "MOK Manager" durante o reboot. Se o instalador avisar que o `acpi_call` falhou ao carregar, consulte [Solução de Problemas](docs/troubleshooting.md).
+
 ---
 
 ## O Que é Instalado

@@ -50,6 +50,8 @@ cd predator-helios-neo-16-linux
 sudo bash install.sh
 ```
 
+> **Secure Boot note:** If Secure Boot is enabled, the `acpi_call` kernel module must have its signing key enrolled in the MOK database. Ubuntu's `acpi-call-dkms` package handles signing automatically, but the key enrollment requires a one-time reboot confirmation in the MOK Manager. If the installer warns that `acpi_call` failed to load, see [Troubleshooting](docs/troubleshooting.md).
+
 ---
 
 ## What Gets Installed

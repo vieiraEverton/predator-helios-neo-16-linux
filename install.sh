@@ -27,7 +27,14 @@ ok "Dependencies installed"
 # ── 2. acpi_call module at boot ──────────────────────────────────────────────
 echo "[ 2/6 ] Configuring kernel modules..."
 cp "$SCRIPT_DIR/modules/acpi-call.conf" /etc/modules-load.d/acpi-call.conf
-modprobe acpi_call 2>/dev/null && ok "acpi_call loaded" || warn "acpi_call load failed — will be active after reboot"
+if modprobe acpi_call 2>/dev/null; then
+    ok "acpi_call loaded"
+else
+    warn "acpi_call load failed — possible causes:"
+    warn "  1. Reboot required (module will load automatically on next boot)"
+    warn "  2. Secure Boot is enabled and the MOK key is not enrolled"
+    warn "     → See docs/troubleshooting.md section 'Secure Boot / MOK'"
+fi
 
 # ── 3. nvidia-powerd service ─────────────────────────────────────────────────
 echo "[ 3/6 ] Setting up nvidia-powerd (Dynamic Boost 2.0)..."
