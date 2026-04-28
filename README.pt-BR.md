@@ -45,7 +45,7 @@ Dois problemas foram identificados:
 ## Instalação Rápida
 
 ```bash
-git clone https://github.com/SEU_USUARIO/predator-helios-neo-16-linux.git
+git clone https://github.com/vieiraEverton/predator-helios-neo-16-linux.git
 cd predator-helios-neo-16-linux
 sudo bash install.sh
 ```
